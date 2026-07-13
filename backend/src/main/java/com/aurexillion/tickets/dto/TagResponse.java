@@ -1,0 +1,9 @@
+package com.aurexillion.tickets.dto;
+
+import com.aurexillion.tickets.model.Tag;
+
+public record TagResponse(Long id, String name) {
+    public static TagResponse from(Tag tag) {
+        return new TagResponse(tag.getId(), tag.getName());
+    }
+}
