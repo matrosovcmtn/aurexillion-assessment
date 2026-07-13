@@ -2,6 +2,8 @@
 
 A small dashboard for viewing, creating, and updating customer support tickets. Split into two independent parts that talk only over a documented REST contract.
 
+Live demo: https://194-87-85-57.sslip.io
+
 - `backend/` — Java 21 + Spring Boot API, PostgreSQL persistence. See `backend/README.md`.
 - `frontend/` — React + TypeScript SPA. See `frontend/README.md`.
 
