@@ -5,7 +5,7 @@ React + TypeScript SPA for viewing, filtering, creating, and updating support ti
 ## Technologies
 
 - React 19 + TypeScript
-- Vite+ (Vite, Oxlint, Oxfmt, Vitest)
+- Vite+ toolchain (Rolldown, Oxlint, Oxfmt, Vitest)
 - React Router
 - TanStack Query
 - React Hook Form + Zod

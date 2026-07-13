@@ -20,7 +20,7 @@ No dependency install step beyond Maven pulling artifacts on first build — `./
 ```
 docker compose up db backend
 ```
-Boots Postgres and the API together; the API seeds on first start. Runs on the internal Docker network at `backend:8080` (not published to the host on its own — the frontend's nginx is the public entrypoint once that track is wired in).
+Boots Postgres and the API together; the API seeds on first start. Runs on the internal Docker network at `backend:8080`, not published to the host directly — the frontend's nginx is the public entrypoint.
 
 **Standalone, for local development:**
 ```
@@ -51,7 +51,7 @@ Docker must be running — the test suite spins up a throwaway `postgres:16-alpi
 
 ## Assumptions / trade-offs
 
-- Statuses moved from a fixed enum to a `TicketStatus` entity so they're configurable per the contract; priority stayed an enum since the brief fixes it to three values.
+- Statuses moved from a fixed enum to a `TicketStatus` entity so they're configurable — a real support tool needs more than three fixed states; priority stayed an enum since the brief fixes it to three values.
 - Tag / assignee list filters are OR matches within the field, AND across fields.
 - Statuses are soft-deactivated (`active=false`) rather than hard-deleted while tickets still reference them, to avoid orphaning existing tickets.
 - Postgres port is published to `127.0.0.1` only, not left fully unpublished — needed so `./mvnw spring-boot:run` can reach it during local dev without exposing it beyond the host itself.

@@ -15,3 +15,12 @@ docker compose up --build
 Brings up Postgres, the API, and the SPA behind nginx. Open `http://localhost:3000` — seeded data, no local Java/Node required.
 
 Each side also runs standalone for development — see `backend/README.md` and `frontend/README.md`.
+
+## Tests
+
+- Backend: `cd backend && ./mvnw test` — Docker required, runs against a real Postgres via Testcontainers.
+- Frontend: `cd frontend && pnpm test`.
+
+## Deployment
+
+Pushes to `main` deploy automatically to the VPS via GitHub Actions (`.github/workflows/deploy.yml`) — same `docker-compose.yml` runs there as locally.
