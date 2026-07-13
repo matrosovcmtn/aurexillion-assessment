@@ -67,19 +67,6 @@ public class DataSeeder implements CommandLineRunner {
                 ensureTag("integration")
         );
 
-        migrateAssignee(
-                "anna.um@example.com",
-                "Maya Chen",
-                "maya.chen@example.com",
-                "Customer Support",
-                "Support Agent");
-        migrateAssignee(
-                "maxim.cheban@example.com",
-                "Daniel Frost",
-                "daniel.frost@example.com",
-                "Customer Support",
-                "Support Lead");
-
         List<Assignee> assignees = List.of(
                 ensureAssignee("Maya Chen", "maya.chen@example.com", "Customer Support", "Support Agent"),
                 ensureAssignee("Daniel Frost", "daniel.frost@example.com", "Customer Support", "Support Lead"),
@@ -186,21 +173,6 @@ public class DataSeeder implements CommandLineRunner {
             case 3 -> now.plus(2 + (index % 14), ChronoUnit.DAYS);
             default -> now.plus(21 + (index % 30), ChronoUnit.DAYS);
         };
-    }
-
-    private void migrateAssignee(
-            String oldEmail,
-            String name,
-            String newEmail,
-            String department,
-            String position) {
-        assigneeRepository.findByEmailIgnoreCase(oldEmail).ifPresent(assignee -> {
-            assignee.setName(name);
-            assignee.setEmail(newEmail);
-            assignee.setDepartment(department);
-            assignee.setPosition(position);
-            assigneeRepository.save(assignee);
-        });
     }
 
     private TicketStatus ensureStatus(String name, String color, int position, boolean isInitial) {
