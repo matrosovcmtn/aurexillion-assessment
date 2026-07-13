@@ -1,6 +1,6 @@
 # Backend — Support Ticket Dashboard API
 
-REST API for the ticket dashboard. Java 21, Spring Boot 3, PostgreSQL. Implements `../API_CONTRACT.md`.
+REST API for the ticket dashboard. Java 21, Spring Boot 3, PostgreSQL.
 
 ## Technologies
 
@@ -47,12 +47,12 @@ Docker must be running — the test suite spins up a throwaway `postgres:16-alpi
 - Tickets: list (paginated + filters/sort), create, get, partial update via `PATCH`
 - Statuses / tags / assignees: CRUD
 - Settings: ticket code prefix
-- Statuses are configurable entities, not a fixed enum on the wire — see `../API_CONTRACT.md`
+- Statuses are configurable entities, not a fixed enum on the wire
 
 ## Assumptions / trade-offs
 
 - Statuses moved from a fixed enum to a `TicketStatus` entity so they're configurable per the contract; priority stayed an enum since the brief fixes it to three values.
-- Tag / assignee list filters are OR matches within the field, AND across fields — see `../API_CONTRACT.md`.
+- Tag / assignee list filters are OR matches within the field, AND across fields.
 - Statuses are soft-deactivated (`active=false`) rather than hard-deleted while tickets still reference them, to avoid orphaning existing tickets.
 - Postgres port is published to `127.0.0.1` only, not left fully unpublished — needed so `./mvnw spring-boot:run` can reach it during local dev without exposing it beyond the host itself.
 - `ddl-auto: update` instead of Flyway — faster for this scope; would move to migrations for anything longer-lived.

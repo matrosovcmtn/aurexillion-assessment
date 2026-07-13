@@ -1,6 +1,6 @@
 # Support Ticket Dashboard — Frontend
 
-React + TypeScript SPA for viewing, filtering, creating, and updating support tickets. Talks to the backend only through the HTTP contract in `API_CONTRACT.md`.
+React + TypeScript SPA for viewing, filtering, creating, and updating support tickets. Talks to the backend only over its documented REST API.
 
 ## Technologies
 

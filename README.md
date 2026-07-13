@@ -5,8 +5,6 @@ A small dashboard for viewing, creating, and updating customer support tickets. 
 - `backend/` — Java 21 + Spring Boot API, PostgreSQL persistence. See `backend/README.md`.
 - `frontend/` — React + TypeScript SPA. See `frontend/README.md`.
 
-Contract between the two: `API_CONTRACT.md`.
-
 ## Running everything
 
 ```
