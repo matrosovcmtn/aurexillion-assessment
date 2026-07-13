@@ -1,0 +1,1 @@
+export { getApiOrigin } from "./env";
