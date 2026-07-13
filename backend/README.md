@@ -27,7 +27,7 @@ Boots Postgres and the API together; the API seeds on first start. Runs on the i
 docker compose up -d db
 ./mvnw spring-boot:run
 ```
-The `db` service publishes `5432` to `127.0.0.1` for this workflow. The API is then reachable at `http://localhost:8080/api/tickets`. CORS allows the Vite dev origin (`http://localhost:5173`).
+The `db` service publishes `5432` to `127.0.0.1` for this workflow. The API is then reachable at `http://localhost:8080/api/tickets`. Allowed CORS origins come from `CORS_ALLOWED_ORIGINS` (comma-separated, defaults to the Vite dev origin and `localhost:3000`) — see `../.env.example`.
 
 ## Database / seed data
 
