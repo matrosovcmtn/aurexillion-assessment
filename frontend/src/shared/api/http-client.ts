@@ -18,6 +18,13 @@ async function parseJsonBody(response: Response): Promise<unknown> {
   try {
     return JSON.parse(text) as unknown;
   } catch {
+    // A non-JSON body on a failed request is usually a gateway/proxy error page
+    // (502/504 while the backend restarts) rather than a malformed API response —
+    // let toApiError build a message from the status instead of masking it here.
+    if (!response.ok) {
+      return undefined;
+    }
+
     throw new ApiError({
       message: "Server returned an invalid JSON response",
       status: response.status,
@@ -35,6 +42,13 @@ function toApiError(status: number, payload: unknown): ApiError {
         details: Array.isArray(errorPayload.details) ? errorPayload.details : undefined,
       });
     }
+  }
+
+  if (status >= 500) {
+    return new ApiError({
+      message: "Server is temporarily unavailable. Please try again.",
+      status,
+    });
   }
 
   return new ApiError({
